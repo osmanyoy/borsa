@@ -6,8 +6,10 @@ public class Test implements TestMBean {
     private String surname;
 
     @Override
-    public void method1(String str) {
-        System.out.println("method1 " + name + " " + getSurname() + " called for " + str);
+    public String method1(String str) {
+        String x = "method1 " + name + " " + getSurname() + " called for " + str;
+		System.out.println(x);
+		return x;
     }
 
     @Override

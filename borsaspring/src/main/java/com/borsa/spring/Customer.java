@@ -13,11 +13,20 @@ import javax.persistence.Id;
 import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PostLoad;
+import javax.persistence.PostPersist;
+import javax.persistence.PostRemove;
+import javax.persistence.PostUpdate;
+import javax.persistence.PrePersist;
+import javax.persistence.PreRemove;
+import javax.persistence.PreUpdate;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+
+import org.aspectj.lang.annotation.Before;
 
 @Entity
 @Table(name="musteri",indexes = @Index(columnList = "name,surname"))
@@ -53,6 +62,19 @@ public class Customer {
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "customer")
 	private List<Phone> phones;
 	
+	@PrePersist
+	@PreRemove
+	@PreUpdate
+	public void before() {
+	}
+	
+	@PostPersist
+	@PostRemove
+	@PostUpdate
+	@PostLoad
+	public void after() {
+	}
+
 	public int getValue1() {
 		return value1;
 	}

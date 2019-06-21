@@ -22,8 +22,11 @@ import javax.tools.ToolProvider;
 
 public class CompilerTest2 {
 	public static void main(String[] args) throws Exception {
-		String program = "" + "public class TestClass {\n" + "  public static void main(String[] args) {\n"
-				+ "    System.out.println(\"Hello World, from a generated program!\");\n" + "  }\n" + "}\n";
+		String program = "" + "public class TestClass {\n" 
+	+ "  public static void main(String[] args) {\n"
+	+ "    System.out.println(\"Hello World, from a generated program!\");\n" 
+	+ "  }\n" 
+	+ "}\n";
 
 		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
 
@@ -36,7 +39,7 @@ public class CompilerTest2 {
 				Arrays.asList(compilationUnit));
 
 		compilationTask.call();
-
+		
 		CompiledClassLoader classLoader = new CompiledClassLoader(fileManager.getGeneratedOutputFiles());
 
 		Class<?> codeGenTest = classLoader.loadClass("TestClass");
